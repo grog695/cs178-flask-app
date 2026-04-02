@@ -20,12 +20,11 @@ def add_user():
     if request.method == 'POST':
         # Extract form data
         title = request.form['title']
-        genre = request.form['genre_name']
         release = request.form['release_date']
         
         # Process the data (e.g., add it to a database)
         # For now, let's just print it to the console
-        print("Title:", title, ":", "Genre:", genre, ":", "Release Date:", release)
+        print("Title:", title, ":", "Release Date:", release)
         
         flash('Movie added successfully! Huzzah!', 'success')  # 'success' is a category; makes a green banner at the top
         # Redirect to home page or another page upon successful submission
@@ -56,7 +55,9 @@ def delete_user():
 def display_users():
     # hard code a value to the users_list;
     # note that this could have been a result from an SQL query :) 
-    users_list = execute_query()
+    query = """SELECT title, release_date
+    FROM movie"""
+    users_list = execute_query(query)
     return render_template('display_users.html', users = users_list)
 
 

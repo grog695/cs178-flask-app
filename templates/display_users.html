@@ -12,16 +12,14 @@
             <thead class="thead-dark"> <!-- creates a dark background for the table header -->
                 <tr>
                     <th>Title</th>
-                    <th>Genre</th>
                     <th>Release Date</th>
                 </tr>
             </thead>
             <tbody> <!-- table body -- loop through all of the users -->
                 {% for user in users %}
                 <tr>
-                    <td>{{ user[0] }}</td>
-                    <td>{{ user[1] }}</td>
-                    <td>{{ user[2] }}</td>
+                    <td>{{ user.title }}</td>
+                    <td>{{ user.release_date }}</td>
                 </tr>
                 {% endfor %}
             </tbody>
