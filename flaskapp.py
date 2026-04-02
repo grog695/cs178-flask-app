@@ -19,14 +19,15 @@ def home():
 def add_user():
     if request.method == 'POST':
         # Extract form data
-        name = request.form['name']
-        genre = request.form['genre']
+        title = request.form['title']
+        genre = request.form['genre_name']
+        release = request.form['release_date']
         
         # Process the data (e.g., add it to a database)
         # For now, let's just print it to the console
-        print("Name:", name, ":", "Favorite Genre:", genre)
+        print("Title:", title, ":", "Genre:", genre, ":", "Release Date:", release)
         
-        flash('User added successfully! Huzzah!', 'success')  # 'success' is a category; makes a green banner at the top
+        flash('Movie added successfully! Huzzah!', 'success')  # 'success' is a category; makes a green banner at the top
         # Redirect to home page or another page upon successful submission
         return redirect(url_for('home'))
     else:
@@ -37,13 +38,13 @@ def add_user():
 def delete_user():
     if request.method == 'POST':
         # Extract form data
-        name = request.form['name']
+        title = request.form['title']
         
         # Process the data (e.g., add it to a database)
         # For now, let's just print it to the console
-        print("Name to delete:", name)
+        print("Movie to delete:", title)
         
-        flash('User deleted successfully! Hoorah!', 'warning') 
+        flash('Movie deleted successfully! Hoorah!', 'warning') 
         # Redirect to home page or another page upon successful submission
         return redirect(url_for('home'))
     else:
