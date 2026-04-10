@@ -50,6 +50,20 @@ def delete_user():
         # Render the form page if the request method is GET
         return render_template('delete_user.html')
 
+@app.route('/update-user', methods=['GET', 'POST'])
+def update_user():
+    if request.method == 'POST':
+
+        movie_title = request.form['title']
+        attribute_to_change = request.form['column']
+        new_val = request.form['new_value']
+        
+        print(f"Updating {movie_title}: Set {attribute_to_change} to {new_val}")
+        
+        flash('Update successful!', 'success')
+        return redirect(url_for('home'))
+    
+    return render_template('update_user.html')
 
 @app.route('/display-users')
 def display_users():
