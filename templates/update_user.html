@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Update Movie</title>
+  </head>
+  <body>
+    <h1>Update Movie</h1>
+    <form action="{{ url_for('update_user') }}" method="post">
+      <label for="title">Name:</label><br />
+      <input type="text" id="title" name="title" required /><br />
+      <label for="column">Variable to Be Changed:</label><br />
+      <input type="text" id="column" name="column" required /><br />
+      <label for="new_value">New Value:</label><br />
+      <input type="text" id="new_value" name="new_value" required /><br />
+      <input type="submit" value="Submit" />
+    </form>
+  </body>
+</html>
