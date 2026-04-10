@@ -9,7 +9,7 @@
 ## Overview
 
 <!-- Describe your project in 2-4 sentences. What does it do? Who is it for? What problem does it solve? -->
-
+<!-- This is an in-depth movie database that gives the user the opportunity to create new movies as well as toggling with the other movies in the database. This is useful for any movie enjoyer who wants to access key information about these films. -->
 ---
 
 ## Technologies Used
@@ -31,7 +31,10 @@ ProjectOne/
 ├── creds_sample.py      # Sample credentials file (see Credential Setup below)
 ├── templates/
 │   ├── home.html        # Landing page
-│   ├── [other].html     # Add descriptions for your other templates
+│   ├── add_user.html     # Adds a new movie to the database
+│   ├── delete_user.html     # Deletes a movie from the database
+│   ├── update_user.html     # Changes a feature about the movie
+│   ├── display_users.html     # Displays the title and release date for every movie in the dataset, but can display any list the user may like through SQL
 ├── .gitignore           # Excludes creds.py and other sensitive files
 └── README.md
 ```
@@ -43,7 +46,7 @@ ProjectOne/
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/your-username/your-repo-name.git
+   git clone https://github.com/grog695/cs178-flask-app.git
    cd your-repo-name
    ```
 
@@ -70,7 +73,7 @@ ProjectOne/
 The app is deployed on an AWS EC2 instance. To view the live version:
 
 ```
-http://[your-ec2-public-ip]:8080
+http://18.215.153.145:8080
 ```
 
 _(Note: the EC2 instance may not be running after project submission.)_
@@ -85,10 +88,10 @@ Create a file called `creds.py` in the project root with the following format (s
 
 ```python
 # creds.py — do not commit this file
-host = "your-rds-endpoint"
+host = "database-2.cilkwumgg1g9.us-east-1.rds.amazonaws.com"
 user = "admin"
-password = "your-password"
-db = "your-database-name"
+password = "ungrogged9339"
+db = "movies"
 ```
 
 ---
@@ -98,11 +101,11 @@ db = "your-database-name"
 ### SQL (MySQL on RDS)
 
 <!-- Briefly describe your relational database schema. What tables do you have? What are the key relationships? -->
+<!-- The movie database has a very complex schema, with it consisting of seventeen tables. The most significant relationships that are likely to be used by users are with movie and movie cast, and with movie and genre. -->
 
 **Example:**
 
-- `[TableName]` — stores [description]; primary key is `[key]`
-- `[TableName]` — stores [description]; foreign key links to `[other table]`
+- `[movie]` — stores [title,budget,release_date,etc.]; primary key is `[title]`
 
 The JOIN query used in this project: <!-- describe it in plain English -->
 
@@ -120,19 +123,21 @@ The JOIN query used in this project: <!-- describe it in plain English -->
 
 | Operation | Route      | Description    |
 | --------- | ---------- | -------------- |
-| Create    | `/[route]` | [what it does] |
-| Read      | `/[route]` | [what it does] |
-| Update    | `/[route]` | [what it does] |
-| Delete    | `/[route]` | [what it does] |
+| Create    | `/add_user` | [Adds a movie, with it requiring at least a title and release date] |
+| Read      | `/display_users` | [Displays all movies from the query] |
+| Update    | `/update_user` | [Updates variables from an existing movie. This variable will be input by the user] |
+| Delete    | `/delete_user` | [Deletes a movie from the database by title alone] |
 
 ---
 
 ## Challenges and Insights
 
 <!-- What was the hardest part? What did you learn? Any interesting design decisions? -->
+<!-- Personally, I believe the hardest part of this project was incorporating the DynamoDB database. I do not feel confident in how I did on that. -->
 
 ---
 
 ## AI Assistance
 
 <!-- List any AI tools you used (e.g., ChatGPT) and briefly describe what you used them for. Per course policy, AI use is allowed but must be cited in code comments and noted here. -->
+<!-- Google Gemini assistance was used on the update_user.html file. -->
