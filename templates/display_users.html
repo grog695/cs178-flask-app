@@ -13,6 +13,7 @@
                 <tr>
                     <th>Title</th>
                     <th>Release Date</th>
+                    <th>Genre Name</th>
                 </tr>
             </thead>
             <tbody> <!-- table body -- loop through all of the users -->
@@ -20,6 +21,7 @@
                 <tr>
                     <td>{{ user.title }}</td>
                     <td>{{ user.release_date }}</td>
+                    <td>{{ user.genre_name }}</td>
                 </tr>
                 {% endfor %}
             </tbody>
