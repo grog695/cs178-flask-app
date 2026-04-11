@@ -59,7 +59,7 @@ def update_user():
         new_val = request.form.get('new_value')
         
         query = f"""UPDATE movie
-        SET {} = %s
+        SET {attribute_to_change} = %s
         WHERE title = %s"""
         print(f"Updating {movie_title}: Set {attribute_to_change} to {new_val}")
         
