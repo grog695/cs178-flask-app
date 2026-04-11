@@ -9,7 +9,7 @@
 ## Overview
 
 <!-- Describe your project in 2-4 sentences. What does it do? Who is it for? What problem does it solve? -->
-<!-- This is an in-depth movie database that gives the user the opportunity to create new movies as well as toggling with the other movies in the database. This is useful for any movie enjoyer who wants to access key information about these films. -->
+This is an in-depth movie database that gives the user the opportunity to create new movies as well as toggling with the other movies in the database. This is useful for any movie enjoyer who wants to access key information about these films.
 ---
 
 ## Technologies Used
@@ -34,7 +34,7 @@ ProjectOne/
 │   ├── add_user.html     # Adds a new movie to the database
 │   ├── delete_user.html     # Deletes a movie from the database
 │   ├── update_user.html     # Changes a feature about the movie
-│   ├── display_users.html     # Displays the title and release date for every movie in the dataset, but can display any list the user may like through SQL
+│   ├── display_users.html     # Displays the title and release date for every movie in the dataset
 ├── .gitignore           # Excludes creds.py and other sensitive files
 └── README.md
 ```
@@ -101,21 +101,22 @@ db = "movies"
 ### SQL (MySQL on RDS)
 
 <!-- Briefly describe your relational database schema. What tables do you have? What are the key relationships? -->
-<!-- The movie database has a very complex schema, with it consisting of seventeen tables. The most significant relationships that are likely to be used by users are with movie and movie cast, and with movie and genre. -->
+The movie database has a very complex schema, with it consisting of seventeen tables. The most significant relationships that are likely to be used by users are with movie and movie cast, and with movie and genre.
 
 **Example:**
 
-- `[movie]` — stores [title,budget,release_date,etc.]; primary key is `[title]`
+- `[movie]` — stores [title,budget,release_date,etc.]; primary key is `[movie_id]`
 
 The JOIN query used in this project: <!-- describe it in plain English -->
+The JOIN query was used in the READ portion of the CRUD. It involves joining three tables to take a column from a separate table so that it can be read on the website. 
 
 ### DynamoDB
 
 <!-- Describe your DynamoDB table. What is the partition key? What attributes does each item have? How does it connect to the rest of the app? -->
 
-- **Table name:** `[your-table-name]`
-- **Partition key:** `[key-name]`
-- **Used for:** [description]
+- **Table name:** `[movies]`
+- **Partition key:** `[movie_id]`
+- **Used for:** [Storing movies more effectively for movies with multiple genres/actors/etc.]
 
 ---
 
@@ -133,11 +134,11 @@ The JOIN query used in this project: <!-- describe it in plain English -->
 ## Challenges and Insights
 
 <!-- What was the hardest part? What did you learn? Any interesting design decisions? -->
-<!-- Personally, I believe the hardest part of this project was incorporating the DynamoDB database. I do not feel confident in how I did on that. -->
+Personally, I believe the hardest part of this project was incorporating the DynamoDB database. I do not feel confident in how I did on that.
 
 ---
 
 ## AI Assistance
 
 <!-- List any AI tools you used (e.g., ChatGPT) and briefly describe what you used them for. Per course policy, AI use is allowed but must be cited in code comments and noted here. -->
-<!-- Google Gemini assistance was used on the update_user.html file. -->
+Google Gemini assistance was used on the update_user.html file and the dbCode.py file.

@@ -49,3 +49,14 @@ def execute_dynamo():
     
     print(f"Found {len(items)} movie(s):\n")
     return items
+
+'''The following function was made with assistance of Google Gemini'''
+def execute_modification(query, args=()):
+    '''This function saves any potential changes that will be made through the HTML files'''
+    conn = get_conn()
+    try:
+        with conn.cursor() as cur:
+            cur.execute(query, args)
+        conn.commit()
+    finally:
+        conn.close()

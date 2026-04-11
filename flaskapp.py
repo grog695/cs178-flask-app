@@ -19,12 +19,12 @@ def home():
 def add_user():
     if request.method == 'POST':
         # Extract form data
-        title = request.form['title']
-        release = request.form['release_date']
+        title = request.form.get('title')
+        release = request.form.get('release_date')
         
         # Process the data (e.g., add it to a database)
-        # For now, let's just print it to the console
-        print("Title:", title, ":", "Release Date:", release)
+        query = """INSERT INTO movie (title, release_date)
+        VALUES (%s, %s)"""
         
         flash('Movie added successfully! Huzzah!', 'success')  # 'success' is a category; makes a green banner at the top
         # Redirect to home page or another page upon successful submission
@@ -37,11 +37,11 @@ def add_user():
 def delete_user():
     if request.method == 'POST':
         # Extract form data
-        title = request.form['title']
+        title = request.form.get('title')
         
-        # Process the data (e.g., add it to a database)
-        # For now, let's just print it to the console
-        print("Movie to delete:", title)
+        # Process the data (e.g., delete it from a database)
+        query = """DELETE FROM movie
+        WHERE title = %s"""
         
         flash('Movie deleted successfully! Hoorah!', 'warning') 
         # Redirect to home page or another page upon successful submission
@@ -54,10 +54,13 @@ def delete_user():
 def update_user():
     if request.method == 'POST':
 
-        movie_title = request.form['title']
-        attribute_to_change = request.form['column']
-        new_val = request.form['new_value']
+        movie_title = request.form.get('title')
+        attribute_to_change = request.form.get('column')
+        new_val = request.form.get('new_value')
         
+        query = f"""UPDATE movie
+        SET {} = %s
+        WHERE title = %s"""
         print(f"Updating {movie_title}: Set {attribute_to_change} to {new_val}")
         
         flash('Update successful!', 'success')
@@ -70,7 +73,10 @@ def display_users():
     # hard code a value to the users_list;
     # note that this could have been a result from an SQL query :) 
     query = """SELECT title, release_date
-    FROM movie"""
+    FROM movie JOIN movie_genre
+    ON movie.movie_id = movie_genre.movie_id
+    JOIN genre
+    ON movie_genre.genre_name = genre.genre_name"""
     users_list = execute_query(query)
     return render_template('display_users.html', users = users_list)
 
